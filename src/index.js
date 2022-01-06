@@ -6,13 +6,17 @@ const { token } = require('../config.json');
 // Create a new client instance
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
+const path = require('path');
+const eventPath = path.resolve(__dirname,'./events');
+const cmdPath = path.resolve(__dirname,'./commands');
+
 // When the client is ready, run this code (only once)
 client.once('ready', () => {
-    console.log('Ready!');
+    console.log('Client ready');
 });
 
 // retrieve all event files 
-const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
+const eventFiles = fs.readdirSync(eventPath).filter(file => file.endsWith('.js'));
 for (const file of eventFiles) {
 	const event = require(`./events/${file}`);
 	if (event.once) {
@@ -24,7 +28,7 @@ for (const file of eventFiles) {
 
 // retrieve all command files
 client.commands = new Collection();
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+const commandFiles = fs.readdirSync(cmdPath).filter(file => file.endsWith('.js'));
 for (const file of commandFiles) {
     const command = require(`./commands/${file}`);
     // Set a new item in the Collection
