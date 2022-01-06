@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js",
+    "server": "nodemon src/index.js"
   },
   "repository": {
     "type": "git",
@@ -21,5 +23,8 @@
     "discord.js": "^13.5.0",
     "dotenv": "^10.0.0",
     "eslint": "^8.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }
